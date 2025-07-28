@@ -14,19 +14,29 @@
       min-height: 100vh;
       margin: 0;
       padding: 20px;
+      transition: background 0.5s;
+    }
+    .dark-mode {
+      background: linear-gradient(to bottom right, #263238, #000000);
+      color: #fff;
     }
     .container {
       background: #fff;
       border-radius: 20px;
-      max-width: 420px;
+      max-width: 440px;
       width: 100%;
-      padding: 25px;
+      padding: 30px;
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 2s ease;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.8s ease;
+      transition: background 0.5s, color 0.5s;
+    }
+    .dark-mode .container {
+      background: #37474f;
+      color: #fff;
     }
     @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(30px);}
+      from {opacity: 0; transform: translateY(40px);}
       to {opacity: 1; transform: translateY(0);}
     }
     img {
@@ -42,15 +52,21 @@
       color: #00796b;
       margin: 15px 0 10px;
     }
+    .dark-mode h1 {
+      color: #80deea;
+    }
     p {
       font-size: 15px;
       color: #444;
       line-height: 1.6;
     }
+    .dark-mode p {
+      color: #ddd;
+    }
     .friend {
       margin-top: 20px;
       padding-top: 15px;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid #ccc;
     }
     .social-links {
       margin-top: 20px;
@@ -72,10 +88,25 @@
     .social-links a:hover {
       opacity: 0.85;
     }
-    audio {
+    button {
       margin-top: 20px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: none;
+      background-color: #00796b;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #004d40;
+    }
+    audio {
+      margin-top: 25px;
       width: 100%;
       outline: none;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -83,7 +114,7 @@
   <div class="container" id="profile">
     <img src="https://i.ibb.co/CKdTD7xz/1752939425088-1.jpg" alt="Nabin Photo" />
     <h1 id="name">Nabin Giree</h1>
-    <p>Hello! I'm <strong>Nabin</strong> from Nepal. Welcome to my animated and responsive portfolio site made with HTML, CSS & JavaScript.</p>
+    <p id="intro">Hi! I’m <strong>Nabin</strong> from Nepal, currently studying in <strong>Class 9</strong>. I love learning web design and development. This is my personal animated website!</p>
 
     <div class="friend">
       <h2>My Friend</h2>
@@ -96,15 +127,18 @@
       <a href="https://www.instagram.com/" target="_blank" class="instagram">Instagram</a>
     </div>
 
-    <!-- Background music -->
-    <audio autoplay loop controls>
-      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+    <!-- Theme Switcher -->
+    <button onclick="toggleTheme()">Switch Theme</button>
+
+    <!-- Nepali Song (Audio) -->
+    <audio controls autoplay loop>
+      <source src="https://www.dropbox.com/scl/fi/36a1tm3gsgdfj1hv6xd5b/Samjhi-Basauna.mp3?rlkey=cn5vwqsm0yqb86acqz9ftbk36&raw=1" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   </div>
 
   <script>
-    // Simple JS animation: name fade-in
+    // Fade-in animation for name
     window.addEventListener("DOMContentLoaded", () => {
       const name = document.getElementById("name");
       name.style.opacity = 0;
@@ -115,6 +149,11 @@
         if (opacity >= 1) clearInterval(fadeIn);
       }, 30);
     });
+
+    // Theme toggle (light/dark)
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+    }
   </script>
 </body>
 </html>
