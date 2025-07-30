@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nabin Giree | Portfolio</title>
+  <link rel="icon" href="https://i.ibb.co/CKdTD7xz/1752939425088-1.jpg" type="image/png">
   <style>
     :root {
       --main-bg-light: linear-gradient(to bottom right, #e0f7fa, #ffffff);
@@ -35,12 +36,12 @@
     .container {
       background: var(--card-light);
       border-radius: 20px;
-      max-width: 460px;
+      max-width: 600px;
       width: 100%;
       padding: 30px;
       text-align: center;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 1.2s ease-in;
+      animation: fadeIn 1s ease-in;
       transition: background 0.4s, color 0.4s;
     }
 
@@ -76,6 +77,16 @@
       color: #80deea;
     }
 
+    .typing::after {
+      content: "|";
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
     p {
       font-size: 15.5px;
       color: var(--text-light);
@@ -87,14 +98,10 @@
       color: #ccc;
     }
 
-    .friend {
+    .section {
       margin-top: 25px;
       padding-top: 18px;
       border-top: 1px solid #ccc;
-    }
-
-    .social-links {
-      margin-top: 20px;
     }
 
     .social-links a {
@@ -105,7 +112,6 @@
       font-size: 14px;
       color: #fff;
       text-decoration: none;
-      transition: 0.3s ease;
     }
 
     .facebook { background: #1877f2; }
@@ -119,7 +125,7 @@
     }
 
     button {
-      margin-top: 25px;
+      margin-top: 10px;
       padding: 10px 24px;
       font-size: 14px;
       border: none;
@@ -127,32 +133,75 @@
       background: #00796b;
       color: white;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #004d40;
     }
 
     audio {
       margin-top: 25px;
       width: 100%;
       border-radius: 10px;
-      outline: none;
+    }
+
+    .skill-bar {
+      margin: 8px 0;
+      background: #ddd;
+      border-radius: 25px;
+      overflow: hidden;
+    }
+
+    .skill-bar span {
+      display: block;
+      padding: 8px;
+      color: white;
+      background: #00acc1;
+    }
+
+    .game-area {
+      margin-top: 20px;
+    }
+
+    .game-area button {
+      margin: 5px;
+      background: #009688;
+    }
+
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      padding: 6px;
+      font-size: 14px;
+      border-radius: 5px;
+      width: 60px;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
-  <div class="container" id="profile">
+  <div class="container">
     <img src="https://i.ibb.co/CKdTD7xz/1752939425088-1.jpg" alt="Nabin Photo" />
-    <h1 id="name">Nabin Giree</h1>
+    <h1 id="name" class="typing"></h1>
 
-    <p id="intro">
-      Hello! I’m <strong>Nabin</strong> from Nepal, studying in <strong>Class 9</strong>. I love learning
-      <strong>HTML, CSS, and JavaScript</strong> to make creative websites like this one. 😊
-    </p>
+    <p>Hello! I’m <strong>Nabin</strong> from Nepal, studying in <strong>Class 9</strong>. I love learning
+    <strong>HTML, CSS, and JavaScript</strong> to build creative things like this site. 😊</p>
 
-    <div class="friend">
+    <div class="section">
+      <h2>About Me</h2>
+      <p>I enjoy designing websites, listening to music, and trying fun mini-projects. I'm a self-learner with big dreams!</p>
+    </div>
+
+    <div class="section">
+      <h2>My Skills</h2>
+      <p>HTML</p>
+      <div class="skill-bar"><span style="width: 90%">90%</span></div>
+      <p>CSS</p>
+      <div class="skill-bar"><span style="width: 80%">80%</span></div>
+      <p>JavaScript</p>
+      <div class="skill-bar"><span style="width: 65%">65%</span></div>
+    </div>
+
+    <div class="section">
       <h2>My Friend</h2>
       <p><strong>Saroj Kunwar</strong> — A progressive, speedy, and supportive friend like a big brother.</p>
     </div>
@@ -160,33 +209,94 @@
     <div class="social-links">
       <a href="https://www.facebook.com/share/19eDPtmxKe/" target="_blank" class="facebook">Facebook</a>
       <a href="https://vm.tiktok.com/ZSHpfs8tgHUFF-5iHUv/" target="_blank" class="tiktok">TikTok</a>
-      <a href="https://www.instagram.com/" target="_blank" class="instagram">Instagram</a>
+      <a href="https://www.instagram.com/nabin_giree" target="_blank" class="instagram">Instagram</a>
     </div>
 
-    <button onclick="toggleTheme()">Switch Theme</button>
+    <button onclick="toggleTheme(this)">Dark Mode</button>
 
-    <audio controls autoplay loop>
+    <audio controls>
       <source src="https://www.dropbox.com/scl/fi/36a1tm3gsgdfj1hv6xd5b/Samjhi-Basauna.mp3?rlkey=cn5vwqsm0yqb86acqz9ftbk36&raw=1" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
+
+    <div class="section game-area">
+      <h2>🎮 Rock, Paper, Scissors</h2>
+      <button onclick="playGame('rock')">Rock</button>
+      <button onclick="playGame('paper')">Paper</button>
+      <button onclick="playGame('scissors')">Scissors</button>
+      <p class="result" id="gameResult"></p>
+    </div>
+
+    <div class="section game-area">
+      <h2>🎯 Guess the Number</h2>
+      <p>I am thinking of a number between 1 and 20...</p>
+      <input type="number" id="guessInput" min="1" max="20" />
+      <button onclick="checkGuess()">Check</button>
+      <p class="result" id="guessResult"></p>
+      <button onclick="resetGame()">Reset</button>
+    </div>
   </div>
 
   <script>
-    // Fade-in for name
-    window.addEventListener("DOMContentLoaded", () => {
-      const name = document.getElementById("name");
-      name.style.opacity = 0;
-      let opacity = 0;
-      const fadeIn = setInterval(() => {
-        opacity += 0.02;
-        name.style.opacity = opacity;
-        if (opacity >= 1) clearInterval(fadeIn);
-      }, 30);
-    });
+    const fullName = "Nabin Giree";
+    let i = 0;
+    function typeName() {
+      if (i < fullName.length) {
+        document.getElementById("name").textContent += fullName.charAt(i);
+        i++;
+        setTimeout(typeName, 100);
+      }
+    }
+    window.onload = typeName;
 
-    // Toggle light/dark theme
-    function toggleTheme() {
+    function toggleTheme(btn) {
       document.body.classList.toggle("dark-mode");
+      btn.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
+    }
+
+    function playGame(playerChoice) {
+      const choices = ["rock", "paper", "scissors"];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+      let result = "";
+      if (playerChoice === computerChoice) {
+        result = "It's a draw!";
+      } else if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
+      ) {
+        result = "You win!";
+      } else {
+        result = "You lose!";
+      }
+      document.getElementById("gameResult").textContent =
+        `You chose ${playerChoice}, Computer chose ${computerChoice}. ${result}`;
+    }
+
+    let secretNumber = Math.floor(Math.random() * 20) + 1;
+
+    function checkGuess() {
+      const userGuess = parseInt(document.getElementById("guessInput").value);
+      const result = document.getElementById("guessResult");
+
+      if (isNaN(userGuess) || userGuess < 1 || userGuess > 20) {
+        result.textContent = "⛔ Please enter a number between 1 and 20!";
+        return;
+      }
+
+      if (userGuess === secretNumber) {
+        result.textContent = "🎉 Correct! You guessed it!";
+      } else if (userGuess < secretNumber) {
+        result.textContent = "📉 Too low! Try again.";
+      } else {
+        result.textContent = "🔺 Too high! Try again.";
+      }
+    }
+
+    function resetGame() {
+      secretNumber = Math.floor(Math.random() * 20) + 1;
+      document.getElementById("guessInput").value = "";
+      document.getElementById("guessResult").textContent = "🔄 New number generated!";
     }
   </script>
 </body>
