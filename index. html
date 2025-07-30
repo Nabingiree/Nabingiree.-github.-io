@@ -125,7 +125,7 @@
     }
 
     button {
-      margin-top: 10px;
+      margin-top: 15px;
       padding: 10px 24px;
       font-size: 14px;
       border: none;
@@ -167,14 +167,6 @@
     .result {
       margin-top: 10px;
       font-weight: bold;
-    }
-
-    input[type="number"] {
-      padding: 6px;
-      font-size: 14px;
-      border-radius: 5px;
-      width: 60px;
-      margin-top: 5px;
     }
   </style>
 </head>
@@ -220,20 +212,12 @@
     </audio>
 
     <div class="section game-area">
-      <h2>🎮 Rock, Paper, Scissors</h2>
+      <h2>🎮 Let's Play a Game!</h2>
+      <p>Rock, Paper, Scissors</p>
       <button onclick="playGame('rock')">Rock</button>
       <button onclick="playGame('paper')">Paper</button>
       <button onclick="playGame('scissors')">Scissors</button>
       <p class="result" id="gameResult"></p>
-    </div>
-
-    <div class="section game-area">
-      <h2>🎯 Guess the Number</h2>
-      <p>I am thinking of a number between 1 and 20...</p>
-      <input type="number" id="guessInput" min="1" max="20" />
-      <button onclick="checkGuess()">Check</button>
-      <p class="result" id="guessResult"></p>
-      <button onclick="resetGame()">Reset</button>
     </div>
   </div>
 
@@ -271,32 +255,6 @@
       }
       document.getElementById("gameResult").textContent =
         `You chose ${playerChoice}, Computer chose ${computerChoice}. ${result}`;
-    }
-
-    let secretNumber = Math.floor(Math.random() * 20) + 1;
-
-    function checkGuess() {
-      const userGuess = parseInt(document.getElementById("guessInput").value);
-      const result = document.getElementById("guessResult");
-
-      if (isNaN(userGuess) || userGuess < 1 || userGuess > 20) {
-        result.textContent = "⛔ Please enter a number between 1 and 20!";
-        return;
-      }
-
-      if (userGuess === secretNumber) {
-        result.textContent = "🎉 Correct! You guessed it!";
-      } else if (userGuess < secretNumber) {
-        result.textContent = "📉 Too low! Try again.";
-      } else {
-        result.textContent = "🔺 Too high! Try again.";
-      }
-    }
-
-    function resetGame() {
-      secretNumber = Math.floor(Math.random() * 20) + 1;
-      document.getElementById("guessInput").value = "";
-      document.getElementById("guessResult").textContent = "🔄 New number generated!";
     }
   </script>
 </body>
